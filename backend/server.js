@@ -1,0 +1,51 @@
+// const express = require("express");
+// const mongoose = require("mongoose");
+// const cors = require("cors");
+// const expenseRoutes = require("./routes/expenses");
+
+// const app = express();
+
+// // Middleware
+// app.use(cors());
+// app.use(express.json());
+
+// // Connect to MongoDB
+// mongoose.connect("mongodb://localhost:27017/expense-tracker", {
+//   useNewUrlParser: true,
+//   useUnifiedTopology: true,
+// });
+
+// // Routes
+// app.use("/api/expenses", expenseRoutes);
+
+// const PORT = 5001;
+// app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+
+const express = require("express");
+const app = express();
+const bodyParser = require("body-parser");
+app.use(bodyParser.json());
+require("./app/models/expense.model.js");
+
+// Configuring the database
+require("dotenv").config();
+const mongoose = require("mongoose");
+
+// Connecting to the database
+mongoose.connect("mongodb://localhost:27017/expense-tracker");
+mongoose.connection
+  .on("open", () => {
+    console.log("Mongoose connection open");
+  })
+  .on("error", (err) => {
+    console.log(`Connection error: ${err.message}`);
+  });
+
+require("./app/routes/expense.router.js")(app);
+
+// Create a Server
+const server = app.listen(8080, function () {
+  const host = server.address().address;
+  const port = server.address().port;
+  console.log("App listening at http://%s:%s", host, port);
+});
