@@ -16,8 +16,8 @@ const NAVIGATION: Navigation = [
     icon: <DashboardIcon />,
   },
   {
-    segment: "orders",
-    title: "Add Item",
+    segment: "addExpense",
+    title: "Add Expense",
     icon: <AddBoxIcon />,
   },
 ];
