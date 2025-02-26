@@ -2,6 +2,8 @@ import * as React from "react";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import AddBoxIcon from "@mui/icons-material/AddBox";
 import CurrencyExchangeIcon from "@mui/icons-material/CurrencyExchange";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { ReactRouterAppProvider } from "@toolpad/core/react-router";
 import { Outlet, useNavigate } from "react-router";
 import type { Navigation, Branding } from "@toolpad/core/AppProvider";
@@ -55,7 +57,9 @@ export default function App() {
       session={session}
       authentication={{ signIn, signOut }}
     >
-      <Outlet />
+      <LocalizationProvider dateAdapter={AdapterDayjs}>
+        <Outlet />
+      </LocalizationProvider>
     </ReactRouterAppProvider>
   );
 }
