@@ -2,9 +2,7 @@ import type { Session } from "@toolpad/core/AppProvider";
 
 export const useSignIn = () => {
   const fakeAsyncGetSession = async (formData: any): Promise<Session> => {
-    console.log("heheheh");
     return new Promise((resolve, reject) => {
-      console.log("heheheh");
       if (formData.get("password") === "password") {
         resolve({
           user: {

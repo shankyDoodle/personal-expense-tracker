@@ -1,26 +1,3 @@
-// const express = require("express");
-// const mongoose = require("mongoose");
-// const cors = require("cors");
-// const expenseRoutes = require("./routes/expenses");
-
-// const app = express();
-
-// // Middleware
-// app.use(cors());
-// app.use(express.json());
-
-// // Connect to MongoDB
-// mongoose.connect("mongodb://localhost:27017/expense-tracker", {
-//   useNewUrlParser: true,
-//   useUnifiedTopology: true,
-// });
-
-// // Routes
-// app.use("/api/expenses", expenseRoutes);
-
-// const PORT = 5001;
-// app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
-
 const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");

@@ -18,7 +18,6 @@ export default function AddExpense() {
       return;
     }
     const data = new FormData(event.currentTarget);
-    console.log("form data", data);
     const newExpense = {
       title: data.get("title"),
       amount: data.get("amount"),
@@ -30,9 +29,7 @@ export default function AddExpense() {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(newExpense),
-    }).then(() => {
-      // setSnackbarOpen(true);
-    });
+    })
   };
 
   const validateInputs = () => {

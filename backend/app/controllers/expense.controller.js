@@ -79,10 +79,12 @@ exports.deleteExpense = (req, res) => {
 
 exports.updateExpense = (req, res) => {
   Expense.findByIdAndUpdate(
-    req.body.id,
+    req.body._id,
     {
-      author: req.body.author,
       title: req.body.title,
+      amount: req.body.amount,
+      date: req.body.date,
+      category: req.body.category,
     },
     { new: false }
   )
