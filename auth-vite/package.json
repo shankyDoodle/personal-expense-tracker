@@ -10,6 +10,7 @@
   "dependencies": {
     "@emotion/react": "^11",
     "@emotion/styled": "^11",
+    "@greatsumini/react-facebook-login": "^3.4.0",
     "@mui/icons-material": "^6",
     "@mui/material": "^6",
     "@mui/x-data-grid": "^7.27.1",
@@ -18,7 +19,6 @@
     "dayjs": "^1.11.13",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "react-facebook-login": "^4.1.1",
     "react-router": "^7"
   },
   "devDependencies": {

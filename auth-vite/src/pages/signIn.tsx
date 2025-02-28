@@ -12,8 +12,8 @@ import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
 import MuiCard from "@mui/material/Card";
 import { styled } from "@mui/material/styles";
-// @ts-expect-error
-import FacebookLogin from "react-facebook-login/dist/facebook-login-render-props";
+// import FacebookLogin from "react-facebook-login/dist/facebook-login-render-props";
+import FacebookLogin from "@greatsumini/react-facebook-login";
 import { FacebookIcon } from "../assets/CustomIcons";
 import { useSignIn } from "../hooks/useSignIn";
 import { useNavigate } from "react-router";
@@ -201,8 +201,10 @@ export default function SignIn(props: { disableCustomTheme?: boolean }) {
               appId="481428278337227"
               autoLoad={false}
               fields="name,email,picture"
-              scope="public_profile"
-              callback={responseFacebook}
+              scope="public_profile,email"
+              onProfileSuccess={(response) => {
+                responseFacebook(response);
+              }}
               render={(renderProps: any) => (
                 <Button
                   fullWidth
