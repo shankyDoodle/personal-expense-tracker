@@ -25,11 +25,13 @@ export default function DashboardPage() {
 
   const fetchAllExpenses = () => {
     setIsLoading(true);
-    fetch("/api/expenses")
+    fetch("https://personal-expense-tracker-zum4.onrender.com/api/expenses", {})
       .then((response) => response.json())
       .then((data) => {
-        setIsLoading(false);
         setExpenseList(data);
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
   };
 
@@ -38,9 +40,12 @@ export default function DashboardPage() {
   };
 
   const handleDeleteClick = (id: GridRowId) => () => {
-    fetch("api/expense/" + id, {
-      method: "DELETE",
-    }).then((result) => {
+    fetch(
+      "https://personal-expense-tracker-zum4.onrender.com/api/expense/" + id,
+      {
+        method: "DELETE",
+      }
+    ).then((result) => {
       fetchAllExpenses();
     });
   };
@@ -66,14 +71,17 @@ export default function DashboardPage() {
       existingRow.date !== updatedRow.date
     ) {
       try {
-        const response = await fetch(`api/expense`, {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-            Accept: "application/json",
-          },
-          body: JSON.stringify(updatedRow),
-        });
+        const response = await fetch(
+          "https://personal-expense-tracker-zum4.onrender.com/api/expense",
+          {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+              Accept: "application/json",
+            },
+            body: JSON.stringify(updatedRow),
+          }
+        );
         if (!response.ok) throw new Error("Failed to save");
         const updatedExpense = await response.json();
 
@@ -170,7 +178,15 @@ export default function DashboardPage() {
 
   if (isLoading) {
     return (
-      <Box sx={{ display: "flex" }}>
+      <Box
+        sx={{
+          display: "flex",
+          height: "100%",
+          width: "100%",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
         <CircularProgress />
       </Box>
     );

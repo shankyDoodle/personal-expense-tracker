@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useState } from "react";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import FormLabel from "@mui/material/FormLabel";
@@ -7,14 +7,16 @@ import TextField from "@mui/material/TextField";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+import { useNavigate } from "react-router";
 
 export default function AddExpense() {
-  const [titleError, setTitleError] = React.useState("");
-  const [amountError, setAmountError] = React.useState("");
+  const navigate = useNavigate();
+  const [titleError, setTitleError] = useState("");
+  const [amountError, setAmountError] = useState("");
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
     if (!!titleError || !!amountError) {
-      event.preventDefault();
       return;
     }
     const data = new FormData(event.currentTarget);
@@ -25,11 +27,15 @@ export default function AddExpense() {
       category: data.get("category") || "",
     };
 
-    await fetch("api/expense", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(newExpense),
-    })
+    await fetch(
+      "https://personal-expense-tracker-zum4.onrender.com/api/expense",
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(newExpense),
+      }
+    );
+    navigate("/");
   };
 
   const validateInputs = () => {
@@ -100,7 +106,6 @@ export default function AddExpense() {
             }}
             error={!!amountError}
             helperText={amountError}
-            autoFocus
             required
             fullWidth
             variant="outlined"
