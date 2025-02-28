@@ -9,7 +9,7 @@ require("dotenv").config();
 const mongoose = require("mongoose");
 
 // Connecting to the database
-mongoose.connect("mongodb://localhost:27017/expense-tracker");
+mongoose.connect(process.env.MONGODB_URL);
 mongoose.connection
   .on("open", () => {
     console.log("Mongoose connection open");
