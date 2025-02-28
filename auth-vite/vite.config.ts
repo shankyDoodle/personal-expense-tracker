@@ -7,7 +7,7 @@ export default defineConfig({
   server: {
     proxy: {
       "/api": {
-        target: "http://localhost:8080",
+        target: "https://personal-expense-tracker-zum4.onrender.com",
         changeOrigin: true,
         secure: false,
       },

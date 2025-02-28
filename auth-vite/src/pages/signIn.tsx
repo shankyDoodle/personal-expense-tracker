@@ -12,6 +12,7 @@ import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
 import MuiCard from "@mui/material/Card";
 import { styled } from "@mui/material/styles";
+// @ts-expect-error
 import FacebookLogin from "react-facebook-login/dist/facebook-login-render-props";
 import { FacebookIcon } from "../assets/CustomIcons";
 import { useSignIn } from "../hooks/useSignIn";
